@@ -29,5 +29,27 @@ services:
     tty: true
     networks:
       - yolo_network
+    
+  client:
+    container_name: client
+    restart: unless-stopped
+    build: 
+      context: ./client
+    volumes:
+      - yolo:/data/db/client
+    ports:
+      - 3000:3000
+    depends_on: 
+      - server
+    networks: 
+      - yolo_network
+    stdin_open: true
+
+volumes: 
+  yolo
+
+networks:
+  yolo_network:
+    driver: bridge    
        
 
