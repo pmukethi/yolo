@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    restart: unless-stopped
+    ports: 
+      - 27017:27017
+    volumes: 
+      - yolo:/data/db
+    networks:
+      - yolo_network
+      
+
