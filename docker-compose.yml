@@ -46,7 +46,7 @@ services:
     stdin_open: true
 
 volumes: 
-  yolo
+  yolo:
 
 networks:
   yolo_network:
