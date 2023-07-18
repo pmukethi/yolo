@@ -11,5 +11,23 @@ services:
       - yolo:/data/db
     networks:
       - yolo_network
-      
+
+  server:
+    container_name: server
+    restart: unless-stopped
+    build: 
+      context: ./backend
+    environment: 
+      - DB_HOST=mongodb
+    volumes:
+      - yolo:/data/db/backend
+    depends_on: 
+      - mongodb
+    ports: 
+      - 5000:5000
+    stdin_open: true
+    tty: true
+    networks:
+      - yolo_network
+       
 
