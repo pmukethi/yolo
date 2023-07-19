@@ -1,12 +1,12 @@
 FROM node:14.5.0-alpine
 
-WORKDIR "/usr/app"
+WORKDIR /app
 
 COPY ./package*.json ./
 RUN npm install
 
-COPY ./ ./
+COPY . .
 
-EXPOSE 5000
+EXPOSE 3000
 
-CMD ["npm","run","server"]
+CMD ["npm","start"]

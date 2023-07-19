@@ -12,8 +12,8 @@ services:
     networks:
       - yolo_network
 
-  server:
-    container_name: server
+  backend:
+    container_name: backend
     restart: unless-stopped
     build: 
       dockerfile: Dockerfile
@@ -21,12 +21,11 @@ services:
     environment: 
       - DB_HOST=mongodb
     volumes:
-      - /usr/app/node_modules
-      - ./backend:/usr/app
+      - ./backend:/app
     depends_on: 
       - mongodb
     ports: 
-      - "5000:5000"
+      - "5001:5001"
     stdin_open: true
     tty: true
     networks:
@@ -40,12 +39,11 @@ services:
       context: ./client
 
     volumes:
-      - /usr/app/node_modules
-      - ./client:/usr/app
+      - ./client:/app
     ports:
       - "3000:3000"
     depends_on: 
-      - server
+      - backend
     networks: 
       - yolo_network
     stdin_open: true
