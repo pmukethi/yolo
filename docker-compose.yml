@@ -24,6 +24,7 @@ services:
       - ./backend:/app
     depends_on: 
       - mongodb
+    image: yolo/backend:v1.0.0
     ports: 
       - "5001:5001"
     stdin_open: true
@@ -44,6 +45,7 @@ services:
       - "3000:3000"
     depends_on: 
       - backend
+    image: yolo/client:v1.0.0
     networks: 
       - yolo_network
     stdin_open: true
@@ -53,6 +55,7 @@ volumes:
 
 networks:
   yolo_network:
-    driver: bridge    
+    driver: bridge  
+
        
 
