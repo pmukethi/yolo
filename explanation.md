@@ -82,4 +82,7 @@ To run the containers,
 ### 7. I added 2 products via this link and i was able to see them on the browser: http://localhost:3000/#products
 
 ## 6. Docker Images On Docker Hub links
+## backend: https://hub.docker.com/repository/docker/pmukethi/backend/general
+## frontend:https://hub.docker.com/repository/docker/pmukethi/client/general
+
 
