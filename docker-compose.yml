@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 
 services:
   mongodb:
@@ -6,7 +6,7 @@ services:
     image: mongo
     restart: unless-stopped
     ports: 
-      - 27017:27017
+      - "27017:27017"
     volumes: 
       - yolo:/data/db
     networks:
@@ -16,15 +16,17 @@ services:
     container_name: server
     restart: unless-stopped
     build: 
+      dockerfile: Dockerfile
       context: ./backend
     environment: 
       - DB_HOST=mongodb
     volumes:
-      - yolo:/data/db/backend
+      - /usr/app/node_modules
+      - ./backend:/usr/app
     depends_on: 
       - mongodb
     ports: 
-      - 5000:5000
+      - "5000:5000"
     stdin_open: true
     tty: true
     networks:
@@ -34,11 +36,14 @@ services:
     container_name: client
     restart: unless-stopped
     build: 
+      dockerfile: Dockerfile
       context: ./client
+
     volumes:
-      - yolo:/data/db/client
+      - /usr/app/node_modules
+      - ./client:/usr/app
     ports:
-      - 3000:3000
+      - "3000:3000"
     depends_on: 
       - server
     networks: 
